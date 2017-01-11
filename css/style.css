@@ -1,26 +1,26 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700);
 
 @font-face {
-    font-family: 'Big John';
-    src: url('../fonts/big_john-webfont.eot');
-    src: url('../fonts/big_john-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/big_john-webfont.woff2') format('woff2'),
-         url('../fonts/big_john-webfont.woff') format('woff'),
-         url('../fonts/big_john-webfont.ttf') format('truetype'),
-         url('../fonts/big_john-webfont.svg#big_johnregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Big John';
+	src: url('../fonts/big_john-webfont.eot');
+	src: url('../fonts/big_john-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/big_john-webfont.woff2') format('woff2'),
+	url('../fonts/big_john-webfont.woff') format('woff'),
+	url('../fonts/big_john-webfont.ttf') format('truetype'),
+	url('../fonts/big_john-webfont.svg#big_johnregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 @font-face {
-    font-family: 'Slim Joe';
-    src: url('../fonts/slim_joe-webfont.eot');
-    src: url('../fonts/slim_joe-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/slim_joe-webfont.woff2') format('woff2'),
-         url('../fonts/slim_joe-webfont.woff') format('woff'),
-         url('../fonts/slim_joe-webfont.ttf') format('truetype'),
-         url('../fonts/slim_joe-webfont.svg#slim_joeregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Slim Joe';
+	src: url('../fonts/slim_joe-webfont.eot');
+	src: url('../fonts/slim_joe-webfont.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/slim_joe-webfont.woff2') format('woff2'),
+	url('../fonts/slim_joe-webfont.woff') format('woff'),
+	url('../fonts/slim_joe-webfont.ttf') format('truetype'),
+	url('../fonts/slim_joe-webfont.svg#slim_joeregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 
@@ -133,12 +133,6 @@ textarea {
 }
 
 /*  */
-.ba-menu li{
-	float: left;
-	padding: 38px 0 38px 55px;
-	position: relative;
-}
-
 .ba-menu a{
 	color: #ffffff;
 	font-size: 16px;
@@ -148,28 +142,126 @@ textarea {
 	padding-left: 56px;
 	position: relative;
 }
-.ba-menu a:after{
-	content: '';
-	height: 20px;
-	background: rgba(255,255,255,.5);
-	width: 1px;
-	position: absolute;
-	left: 0;
-	top: 50%;
-	margin-top: -10px;
-	transform: skew(-10deg);
-}
-.ba-menu li:first-child{
-	padding-left: 0;
-}
-.ba-menu li:first-child a{
-	padding-left: 0;
-}
-.ba-menu li:first-child a:after{
-	display: none;
-}
+
 .ba-menu a:hover{
 	color: #48BF72;
+}
+
+.ba-toggle, .ba-toggle:hover, .ba-toggle:focus{
+	border: none;
+	padding: 0;
+	background: none;
+	line-height: 1;
+	min-height: 0;
+	margin-top: 35px;
+	outline: none;
+}
+.ba-toggle{
+	display: none;
+}
+.ba-toggle__icon{
+	width: 30px;
+	height: 4px;
+	background: #FFF;
+	display: block;
+	position: relative;
+	margin: 10px 0;
+}
+.ba-toggle__icon::before, .ba-toggle__icon::after{
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: #fff;
+}
+.ba-toggle__icon::before{
+	transform:translateY(-10px);
+}
+.ba-toggle__icon::after{
+	transform:translateY(10px);
+}
+.ba-menu-open .ba-toggle__icon{
+	background-color: transparent;
+}
+.ba-menu-open .ba-toggle__icon:before {
+	transform: translateY(0) rotate(45deg);
+}
+.ba-menu-open .ba-toggle__icon:after {
+	transform: translateY(0) rotate(-45deg);
+}
+@media (min-width:767px){
+
+	.ba-menu li{
+		float: left;
+		padding: 38px 0 38px 55px;
+		position: relative;
+	}
+	.ba-menu a::after{
+		content: '';
+		height: 20px;
+		background: rgba(255,255,255,.5);
+		width: 1px;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		margin-top: -10px;
+		transform: skew(-10deg);
+	}
+	.ba-menu li:first-child{
+		padding-left: 0;
+	}
+	.ba-menu li:first-child a{
+		padding-left: 0;
+	}
+	.ba-menu li:first-child a::after{
+		display: none;
+	}
+}
+@media (max-width:767px){
+	.ba-overlay {
+		position: fixed;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 98;
+		background: rgba(255,255,255, .4);
+
+
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity .4s, visibility .4s;
+	}
+	.ba-toggle{
+		display: inline-block;
+	}
+	.ba-menu{
+		position: fixed;
+		z-index: 99;
+		width: 200px;
+		background: #3A444E;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		transform:translateX(100%);
+	}
+	.ba-menu a{
+		padding: 10px 20px;
+		border-bottom: 1px solid rgba(255,255,255, .3);
+	}
+	body {
+		transition: transform .4s;
+	}
+	.ba-menu-open {
+		transition: transform .4s;
+		transform: translateX(-200px) ;
+	}
+	.ba-menu-open .ba-overlay {
+		opacity: 1;
+		visibility: visible;
+	}
 }
 
 
@@ -245,7 +337,7 @@ textarea {
 	background: url(../img/men-computer.jpg) no-repeat 50% 100%;
 	position: relative;
 }
-.ba-about:before{
+.ba-about::before{
 	position: absolute;
 	content: "";
 	left: 0;
@@ -348,7 +440,7 @@ textarea {
 
 	margin-bottom: 20px;
 }
-.ba-contact-form__field:before {
+.ba-contact-form__field::before {
 	left: 50px;
 	top: 18px;
 	border: solid transparent;
@@ -429,3 +521,5 @@ textarea {
 .ba-social__link:hover .ba-icon-bg{
 	fill: #48BF72;
 }
+
+
